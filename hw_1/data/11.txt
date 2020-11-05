@@ -1,0 +1,75 @@
+In Italia, dall’inizio dell’epidemia di coronavirus, almeno 790.377 persone (+30.550* rispetto a ieri, +4%; ieri +28.244) hanno contratto il virus Sars-CoV-2. Di queste, 39.749*** sono decedute (+337***, +0,9%; ieri +353) e 307.378 sono state dimesse (+5.103, +1,7%; ieri +6.258). Attualmente i soggetti positivi dei quali si ha certezza sono 443.235 (+25.093, +6%; ieri +21.630) e sono visibili nella quinta colonna da destra della tabella in alto; il conto sale a 790.377 — come detto sopra — se nel computo ci sono anche i morti e i guariti, conteggiando cioè tutte le persone che sono state trovate positive al virus dall’inizio dell’epidemia.
+
+I tamponi sono stati 211.831, ovvero 29.544 in più rispetto a ieri quando erano stati 182.287. Mentre il tasso di positività è intorno al 14% (precisamente 14,41%): vuol dire che su 100 tamponi eseguiti 14 sono risultati positivi; ieri era di circa il 15% (precisamente 15,49%). Questa percentuale dà l’idea dell’andamento dei contagi, indipendentemente dal numero di test effettuati. Questa è la mappa del contagio in Italia.
+
+Aumentano i contagi in 24 ore, ma non raggiungono quelli del picco massimo registrato il 31 ottobre (erano 31.758). La curva epidemiologica sale in modo preoccupante, ma più lentamente: infatti, il tasso di positività (il rapporto di casi su tamponi) scende ancora dal 15% al 14% (due giorni fa era al 16%). Il coprifuoco, le «zone rosse» e le altre misure previste dal nuovo Dpcm (in vigore dal 6 novembre al 3 dicembre) dovrebbero produrre effetti importanti sul contenimento della curva e dare i primi risultati nelle prossime settimane. Obiettivo: frenare la diffusione del virus, prima che il sistema sanitario — già in sofferenza — raggiunga il punto di saturazione, e abbassare l’indice Rt (di trasmissione) portandolo al di sotto di 1.
+
+La Regione più colpita rimane la Lombardia con 7.758 nuovi positivi (il suo picco di 8.960 c’è stato il 30 ottobre), seguita da Campania e Piemonte che segnano il loro record assoluto: in Campania i casi odierni sono 4.181 (un record rispetto al suo picco precedente di 3.860 registrato il primo novembre), mentre in Piemonte sono 3.577 (un record rispetto al suo picco precedente di 3.169 registrato il 3 novembre, ossia ieri). Sopra i due mila positivi ci sono poi: Veneto (+2.436) e Lazio (+2.432). Mentre la Sicilia si conferma sempre in ascesa con oltre mille casi quotidiani per il quarto giorno di fila (+1.155, oggi il suo record). Da notare che molte Regioni hanno oggi la percentuale di crescita contagi intorno al 4% rispetto al giorno precedente, segno che il Covid si espande su tutto il territorio nazionale. In basso il dettaglio.
+
+I pazienti ricoverati con sintomi sono 22.116 (+1.002, +4,7%; ieri +1.274), mentre i malati più gravi in terapia intensiva sono 2.292 (+67, +3%; ieri +203). Questi dati sono visibili nella tabella in alto, nella seconda e nella terza colonna da sinistra. Ricordiamo che il picco di ricoveri si è verificato il 4 aprile con 29.010 persone in ospedale e il picco di malati in terapia intensiva si è verificato il 3 aprile con 4.068 pazienti in questo reparto.
+
+I decessi sono in linea con quelli del giorno precedente, paragonabili ai dati dei primi di maggio. Due Regioni non hanno vittime — Molise e Basilicata — mentre quelle con più morti sono: Lombardia (+96), Toscana (+43) e Lazio (+34). In basso il dettaglio.
+
+Qui tutti i bollettini dal 29 febbraio. Qui le ultime notizie della giornata.
+
+I casi Regione per Regione
+Il dato fornito qui sotto, e suddiviso per Regione, è quello dei casi totali (numero di persone trovate positive dall’inizio dell’epidemia: include morti e guariti). La variazione indica il numero dei nuovi casi registrati nelle ultime 24 ore, mentre la percentuale rappresenta l’incremento rispetto al giorno precedente, calcolata sul totale regionale.
+
+Lombardia 224.191 (+7.758, +3,6%; ieri +6.804)
+Emilia-Romagna 62.914** (+1.758, +2,9%; ieri +1.912)
+Piemonte 81.409 (+3.577, +4,6%; ieri +3.169)
+Veneto 65.531 (+2.436, +3,9%; ieri +2.298)
+Marche 16.261 (+653, +4,2%; ieri +431)
+Liguria 32.117 (+1.122, +3,6%; ieri +1.052)
+Campania 69.613 (+4.181, +6,4%; ieri +2.971)
+Toscana 52.815 (+1.828, +3,6%; ieri +2.336)
+Sicilia 26.080 (+1.155, +4,6%; ieri +1.048)
+Lazio 55.273 (+2.432, +4,6%; ieri +2.209)
+Friuli-Venezia Giulia 12.264 (+436, +3,7%; ieri +366)
+Abruzzo 12.543 (+423, +3,5%; ieri +601)
+Puglia 22.085 (+994, +4,7%; ieri +1.163)
+Umbria 12.056 (+496, +4,3%; ieri +420)
+Bolzano 10.097 (+249, +2,5%; ieri +495)
+Calabria 6.092 (+262, +4,5%; ieri +266)
+Sardegna 10.640 (+184, +1,8%; ieri +302)
+Valle d’Aosta 3.720 (+129, +3,6%; ieri +94)
+Trento 9.872 (+225, +2,3%; ieri +112)
+Molise 2.016 (+26, +1,3%; ieri +93)
+Basilicata 2.788 (+226, +8,8%; ieri +102)
+
+I decessi Regione per Regione
+Il dato fornito qui sotto, e suddiviso per Regione, è quello dei morti totali dall’inizio della pandemia. La variazione indica il numero dei nuovi decessi registrati nelle ultime 24 ore.
+
+Lombardia 17.848 (+96; ieri +117)
+Emilia-Romagna 4.699 (+12; ieri +23)
+Piemonte 4.481 (+37; ieri +29)
+Veneto 2.478 (+20; ieri +31)
+Marche 1.032 (+1; ieri +6)
+Liguria 1.834 (+24; ieri +20)
+Campania 739 (+15; ieri +24)
+Toscana 1.446 (+43; ieri +16)
+Sicilia 569 (+19; ieri +14)
+Lazio 1.309 (+34; ieri +21)
+Friuli-Venezia Giulia 414 (+3; ieri +8)
+Abruzzo 568 (+4; ieri +8)
+Puglia 763 (+10; ieri +13)
+Umbria 154 (+6; ieri +8)
+Bolzano 322 (+2; ieri +1)
+Calabria 125 (+4; ieri +3)
+Sardegna 241 (+2; ieri +4)
+Valle d’Aosta 181 (+1; ieri +1)
+Trento 451 (+4; ieri +3)
+Molise 41 (nessun nuovo decesso per il secondo giorno di fila)
+Basilicata 54 (nessun nuovo decesso; ieri +3)
+
+*Il dato non corrisponde esattamente alla differenza dei casi totali odierni con quelli del giorno precedente per via di un ricalcolo dell’Emilia-Romagna (vedi nota successiva).
+
+**La Regione Emilia-Romagna comunica in seguito a verifica sui dati sono stati eliminati 2 casi in quanto giudicati non casi COVID-19.
+
+***Il dato ha subìto una correzione in serata. La Toscana ha comunicato un errore nel calcolo dei decessi odierni: non sono 58 come comunicato in un primo momento, ma 43. L’errore nel conteggio «è dipeso da un problema tecnico nella trasmissione dei dati da parte della la Asl Toscana Centro che ha portato a sovrapporre i decessi ad elenchi anche di non deceduti». Rimane il dato più alto della Toscana.
+
+Le note che riguardano i dati delle persone in cura e in rianimazione:
+
+La Regione Campania comunica che nei dati di ieri, per mero errore materiale, sono stati aggiunti 45 posti di Terapia Intensiva in più.
+
+La Regione Calabria comunica che ieri c’è stato un aggiornamento del bollettino regionale, che riporta una modifica nella distribuzione dei casi ricoverati e terapie intensive. Tale modifica è stata effettuata a seguito delle comunicazioni pervenute dall’azienda ospedaliera di Reggio Calabria e dall’Azienda ospedaliera di Cosenza.
