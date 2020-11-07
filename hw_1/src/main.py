@@ -14,14 +14,16 @@ if __name__ == "__main__":
         filename = '../data/' + str(i) + '.txt'
         shs.append(Shingling(filename))
         shs[i-1].load_clean_document()
+        start_shingles = time.time()
         shs[i-1].build_shingles(5)
-        shs[i-1].hash_shingles()
+        shs[i-1].hash_shingles()        
         print("----------------------" + str(i) + "---------------------")
         print(len(shs[i-1].hashed_shingles))
         print(len(list(set(shs[i-1].hashed_shingles))))
+        print("Shingling time elapsed: " + str(time.time() - start_shingles))
 
-    print("elapsed time " + str(time.time() - start_time))
+    print("Total elapsed time for shingling: " + str(time.time() - start_time) + "\n\n")
 
     for i in range(0,9):
-    	print("jaccard similarity tra " + str(i) + " " + str(i+1))
+    	print("\nJaccard similarity between " + str(i) + " " + str(i+1))
     	print(cs.calculateJaccard(shs[i].hashed_shingles, shs[i+1].hashed_shingles))
