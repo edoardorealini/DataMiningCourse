@@ -70,5 +70,7 @@ if __name__ == "__main__":
     j_sim = compare_sets.calculateJaccard(s.hashed_shingles, s2.hashed_shingles)
     prob_sim = compare_sig.compare_signatures(sig1=signature_1, sig2=signature2)
 
+    # print(s.hashed_shingles)
+
     print("Jaccard between 1 and 2: {}".format(j_sim))
     print("Probability of similarity between 1 and 2: {}".format(prob_sim))

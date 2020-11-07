@@ -7,7 +7,7 @@ class MinHashing:
         self.signature = None
 
     def hash_function(self, value, a, b):
-        return (a*value + b) % 100000049 # Big prime number to avoid collisions
+        return (a*value + b) % 100000000073 # Big prime number to avoid collisions
 
     
     def compute_signature(self, n_hash_functions, shingles_list):
@@ -32,7 +32,7 @@ class MinHashing:
         
         for i in range(n_hash_functions):
 
-            min_hash = 100000049
+            min_hash = 100000000073
 
             for shingle in shingles_list:
                 hashed_val = self.hash_function(shingle, a[i], b[i])
