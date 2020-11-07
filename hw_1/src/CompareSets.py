@@ -15,14 +15,10 @@ class CompareSets:
 		set_two = set(set_two)
 
 		intersection_cardinality = len(set_one.intersection(set_two))
-		print(intersection_cardinality)
+		#print(intersection_cardinality)
 		union_cardinality = len(set_one.union(set_two))
-		print(union_cardinality)
+		#print(union_cardinality)
 
 		jaccard_similarity = intersection_cardinality / union_cardinality
 
 		return jaccard_similarity
-
-
-
-

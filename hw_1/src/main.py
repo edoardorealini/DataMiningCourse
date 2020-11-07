@@ -1,6 +1,7 @@
 from CompareSets import *
 from Shingling import *
 from MinHashing import *
+from CompareSignatures import *
 
 import time
 
@@ -40,9 +41,13 @@ if __name__ == "__main__":
 
     s = Shingling("../data/1.txt")
     s.load_clean_document()
-
     s.build_shingles(5)
     s.hash_shingles()
+
+    s2 = Shingling("../data/2.txt")
+    s2.load_clean_document()
+    s2.build_shingles(5)
+    s2.hash_shingles()
 
     """     
     sh1 = s.hashed_shingles
@@ -56,4 +61,14 @@ if __name__ == "__main__":
     """
 
     m = MinHashing()
-    print(m.compute_signature(n_hash_functions=100, shingles_list=s.hashed_shingles))
+    signature_1 = m.compute_signature(n_hash_functions=100, shingles_list=s.hashed_shingles)
+    signature2 = m.compute_signature(n_hash_functions=100, shingles_list=s2.hashed_shingles)
+
+    compare_sig = CompareSignatures()
+    compare_sets = CompareSets()
+
+    j_sim = compare_sets.calculateJaccard(s.hashed_shingles, s2.hashed_shingles)
+    prob_sim = compare_sig.compare_signatures(sig1=signature_1, sig2=signature2)
+
+    print("Jaccard between 1 and 2: {}".format(j_sim))
+    print("Probability of similarity between 1 and 2: {}".format(prob_sim))
