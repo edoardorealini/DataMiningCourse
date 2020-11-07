@@ -27,6 +27,7 @@ class Shingling:
         with open(self.document_filename) as file:
             text = file.read()
             text = text.lower()
+            text = text.replace("  ", " ")
             cleaned_text = re.sub(r'[^\w\s]','', text)
             cleaned_text = cleaned_text.replace('\n', '')
 
@@ -38,7 +39,6 @@ class Shingling:
                 
     
     def build_shingles(self, k_length):
-
         shingles = []
         for i in range(len(self.document)):
             shingles.append((self.document[i:i+k_length]))
