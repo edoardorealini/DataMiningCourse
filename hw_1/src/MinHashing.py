@@ -10,8 +10,8 @@ class MinHashing:
         return (a*value + b) % (2**32 - 1)
         
     def compute_signature(self, n_hash_functions, shingles_list):
-        a = list(range(0, n_hash_functions))
-        b = list(range(0, n_hash_functions))
+        a = list(range(1, n_hash_functions + 1))
+        b = list(range(1, n_hash_functions + 1))
         b.sort(reverse=True)
         
         signature = []
