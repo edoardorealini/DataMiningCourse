@@ -13,5 +13,5 @@ class CompareSignatures:
 
         self.sim_probability = equals/length
 
-        return equals/length
+        return self.sim_probability
 

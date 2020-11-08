@@ -8,17 +8,17 @@ import time
 if __name__ == "__main__":
 
     
-    filename = '../data/11.txt'
+    filename = '../data/1.txt'
     shingling = Shingling(filename)
     shingling.load_clean_document()
-    shingling.build_shingles(10)
+    shingling.build_shingles(6)
     shingling.hash_shingles()
     #print(shingling.shingles)
 
-    filename2 = '../data/12.txt'
+    filename2 = '../data/2.txt'
     shingling2 = Shingling(filename2)
     shingling2.load_clean_document()
-    shingling2.build_shingles(10)
+    shingling2.build_shingles(6)
     shingling2.hash_shingles()
     #print("start second")
     #print(shingling2.shingles)
@@ -27,14 +27,16 @@ if __name__ == "__main__":
     m.compute_signature(100,shingling.hashed_shingles)
     print(m.signature)
 
+    print("--------------------------------------")
+
     m2 = MinHashing()
     m2.compute_signature(100,shingling2.hashed_shingles)
     print(m2.signature)   
 
     cs = CompareSets()
-    print("Jaccard Similiarity is: ")
+    print("\n\nJaccard Similiarity is: ")
     print(cs.calculateJaccard(shingling.hashed_shingles, shingling2.hashed_shingles))
-
+  
     csign = CompareSignatures()
     print("Signature Similiarity is: ")
     print(csign.compare_signatures(m.signature, m2.signature))
