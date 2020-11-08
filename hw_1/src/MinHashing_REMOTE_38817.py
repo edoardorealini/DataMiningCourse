@@ -1,5 +1,5 @@
 # https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csc_matrix.html#scipy.sparse.csc_matrix
-import random
+
 
 class MinHashing:
 
@@ -44,7 +44,7 @@ class MinHashing:
         
         for i in range(n_hash_functions):
 
-            min_hash = 100000000073
+            min_hash = 6001
 
             for shingle in shingles_list:
                 hashed_val = self.hash_function(shingle, a[i], b[i])

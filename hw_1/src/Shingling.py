@@ -14,6 +14,9 @@ Shingling Class Attributes:
 
 import numpy as np
 import re
+import random
+from collections import OrderedDict
+
 
 class Shingling:    
 
@@ -40,17 +43,37 @@ class Shingling:
     
     def build_shingles(self, k_length):
         shingles = []
-        for i in range(len(self.document)):
-            shingles.append((self.document[i:i+k_length]))
+        for i in range(0, len(self.document) - k_length):
+            shingles.append((self.document[i: i+k_length]))
 
-        self.shingles = list(set(shingles))
+        #print(len(shingles))    
+        self.shingles = list(dict.fromkeys(shingles))
+        #print(len(self.shingles))
+        #self.shingles = list(set(shingles))
 
     def hash_shingles(self):
 
-        hashed_shingles = []
+        new_shingles = []
         for el in self.shingles:
-            hashed_shingles.append(hash(el) % (10 ** 10))
-    
-        self.hashed_shingles = sorted(hashed_shingles)
+            #hashed_shingles.append(hash(el) % (2 ** 32 - 1))
+            new_shingles.append(hash(el))
 
+        self.hashed_shingles = new_shingles
+    
+        #self.hashed_shingles = sorted(hashed_shingles)
+
+    def hash_ascii(self, shingle):
+
+        a = random.randint(0,100)
+        b = random.randint(0,100)
+
+        sum_ascii = 0
+        for char in shingles:
+            sum_ascii += ord(c)
+
+        hash_val = (a * sum_ascii + b) % (2**32 - 1)
+        print(hash_val)
+
+
+    
     

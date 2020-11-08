@@ -6,9 +6,16 @@ class MinHashing:
     def __init__(self):
         self.signature = None
 
+<<<<<<< Updated upstream
+    def hash_function(self, value, a, b):
+        return (a*value + b) % 100000000073 # Big prime number to avoid collisions
+
+    
+=======
     def hash_function(self, value): #a, b):
         return (a*value + b) % (2**32 - 1)
         
+>>>>>>> Stashed changes
     def compute_signature(self, n_hash_functions, shingles_list):
         a = list(range(0, n_hash_functions))
         b = list(range(0, n_hash_functions))
