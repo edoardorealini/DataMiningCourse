@@ -53,26 +53,25 @@ class Shingling:
 
     def hash_shingles(self):
 
-        new_shingles = []
-        for el in self.shingles:
-            #hashed_shingles.append(hash(el) % (2 ** 32 - 1))
-            new_shingles.append(hash(el))
+        hashed_shingles = []
+        for shingle in self.shingles:
+            hashed_shingles.append(self.hash_ascii(shingle))
 
-        self.hashed_shingles = new_shingles
+        self.hashed_shingles = hashed_shingles
     
         #self.hashed_shingles = sorted(hashed_shingles)
 
     def hash_ascii(self, shingle):
 
-        a = random.randint(0,100)
-        b = random.randint(0,100)
+        a = 50
+        b = 25
 
         sum_ascii = 0
-        for char in shingles:
-            sum_ascii += ord(c)
+        for char in shingle:
+            sum_ascii += ord(char)
 
         hash_val = (a * sum_ascii + b) % (2**32 - 1)
-        print(hash_val)
+        return hash_val
 
 
     

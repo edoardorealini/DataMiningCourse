@@ -12,8 +12,13 @@ if __name__ == "__main__":
     shingling = Shingling(filename)
     shingling.load_clean_document()
     shingling.build_shingles(5)
+    print(shingling.shingles[0])
     shingling.hash_shingles()
-    print(shingling.hashed_shingles)
+    print(shingling.hashed_shingles[0])
+
+    m = MinHashing()
+    m.compute_signature(100,shingling.hashed_shingles)
+    print(m.signature)
     
     """
     cs = CompareSets()

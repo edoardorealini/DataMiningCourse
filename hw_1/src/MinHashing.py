@@ -6,7 +6,7 @@ class MinHashing:
     def __init__(self):
         self.signature = None
 
-    def hash_function(self, value): #a, b):
+    def hash_function(self, value, a, b):
         return (a*value + b) % (2**32 - 1)
         
     def compute_signature(self, n_hash_functions, shingles_list):
