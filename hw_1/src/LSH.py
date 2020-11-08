@@ -4,7 +4,7 @@ from CompareSignatures import *
 
 
 class LSH:
-    
+
     # Expecting shingles_dict a dictionary containing all the documents dignatures
     # The key in the dictionary is the document's code.
     def __init__(self, signatures_dict):
@@ -79,7 +79,7 @@ class LSH:
         candidate_pairs = []
         for group in candidate_groups:
             candidate_pairs.append(list(itertools.combinations(group, 2)))
-        print(candidate_pairs)
+        #print(candidate_pairs)
         flat_candidate_pairs = []
         for sublist in candidate_pairs:
             for item in sublist:

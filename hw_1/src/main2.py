@@ -39,3 +39,4 @@ if __name__ == "__main__":
     #print(signatures_dict)
 
     print(lsh.final_pairs)
+
