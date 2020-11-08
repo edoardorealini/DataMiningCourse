@@ -40,8 +40,6 @@ class LSH:
             if(cs.compare_signatures(self.signatures_dict[pair[0]], self.signatures_dict[pair[1]])) >= similarity_threshold:
                 filtered_pairs.append(pair)
 
-        self.final_pairs = filtered_pairs
-
         return filtered_pairs 
 
 
@@ -86,6 +84,8 @@ class LSH:
                 flat_candidate_pairs.append(item)
 
         self.all_candidate_pairs = flat_candidate_pairs
+        final_pairs = list(set(self.filter_threshold(self.all_candidate_pairs, similarity_threshold)))        
+        self.final_pairs = final_pairs
 
-        return self.filter_threshold(self.all_candidate_pairs, similarity_threshold)
+        return final_pairs
 
