@@ -33,7 +33,6 @@ class LSH:
 
     def filter_threshold(self, all_candidate_pairs, similarity_threshold):
         cs = CompareSignatures()
-
         filtered_pairs = []
 
         for pair in all_candidate_pairs:
@@ -70,8 +69,9 @@ class LSH:
         # for which the hashed bands are equal
         candidate_groups = []
         for band in hashed_bands:
-            pairs = [(i + 1) for i, el in enumerate(hashed_bands[band]) if hashed_bands[band].count(el) > 1]
-            candidate_groups.append(pairs)
+            document_ids = [(i + 1) for i, el in enumerate(hashed_bands[band]) if hashed_bands[band].count(el) > 1]
+            document_ids = list(set(document_ids))
+            candidate_groups.append(document_ids)
         
         # Creating the lists of candidate pairs
         candidate_pairs = []
@@ -82,9 +82,11 @@ class LSH:
         for sublist in candidate_pairs:
             for item in sublist:
                 flat_candidate_pairs.append(item)
-
+        
+        flat_candidate_pairs = list(set(flat_candidate_pairs))
         self.all_candidate_pairs = flat_candidate_pairs
-        final_pairs = list(set(self.filter_threshold(self.all_candidate_pairs, similarity_threshold)))        
+
+        final_pairs = list(self.filter_threshold(self.all_candidate_pairs, similarity_threshold))        
         self.final_pairs = final_pairs
 
         return final_pairs

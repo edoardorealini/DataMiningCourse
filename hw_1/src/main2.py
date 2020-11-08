@@ -31,7 +31,7 @@ if __name__ == "__main__":
         signatures_dict[i + 1] = m.signature
     
     lsh = LSH(signatures_dict=signatures_dict)
-    lsh.find_pairs(bands=20, similarity_threshold=0.1)
+    lsh.find_pairs(bands=20, similarity_threshold=0.2)
 
     print(lsh.final_pairs)
 
