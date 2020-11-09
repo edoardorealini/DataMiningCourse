@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
     #print("Signatures dict before banding: ", lsh.signatures_dict)
 
-    lsh.find_pairs_over_th(bands=args.bands, similarity_threshold=args.similarity_threshold)
+    lsh.find_pairs(bands=args.bands, similarity_threshold=args.similarity_threshold)
 
     """ 
     print("\nAll Candidates: ", lsh.all_candidate_pairs)
