@@ -28,4 +28,5 @@ class MinHashing:
             signature.append(min_hash)
             
         self.signature = signature
+        return signature
         
