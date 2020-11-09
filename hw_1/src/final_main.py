@@ -15,7 +15,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Parameters')
     parser.add_argument('-ks', dest='k_shingles', type=int, help='Dimension of Shingles',  nargs='?', default=5)
     parser.add_argument('-nhf', dest='n_hash_functions', type=int, help='Number of hash functions to use for MinHashing',  nargs='?', default=100)
-    parser.add_argument('-b', dest='bands', type=int, help='Bands for LSH procedure',  nargs='?', default=20)
+    parser.add_argument('-b', dest='bands', type=int, help='Bands for LSH procedure',  nargs='?', default=25)
     parser.add_argument('-st', dest='similarity_threshold', type=float, help='Similarity threshold for LSH procedure',  nargs='?', default=0.1)
 
     args = parser.parse_args()
@@ -87,13 +87,17 @@ if __name__ == "__main__":
     end_time_minh = time.time()
     print("Time Elapsed MinHashing: ", end_time_minh - start_time_minh)
 
+    signature_dict = {}
 
+    for i, minhashing in enumerate(minhashing_objects):
+        signature_dict[i + 1] = minhashing.signature
 
+    lsh = LSH(signature_dict)
+    lsh.find_pairs(args.bands, args.similarity_threshold)
 
+    print(signature_dict)
 
-
-
-    signature_list = []
+    print("Final Candidates: ", lsh.final_pairs)
 
 
     #for pair in pairs:
