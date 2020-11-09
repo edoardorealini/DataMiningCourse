@@ -15,11 +15,10 @@ if __name__ == "__main__":
 
     print("Signatures dict before banding: ", lsh.signatures_dict)
 
-    lsh.find_pairs(bands=2, similarity_threshold=0.1)
+    lsh.find_pairs_over_th(bands=2, similarity_threshold=0.1)
 
     print("All Candidates: ", lsh.all_candidate_pairs)
     print("Signatures dict after banding: ", lsh.signatures_dict)
-    print("Hashed bands: ", lsh.hashed_bands)
     print("Final candidates: ", lsh.final_pairs)
 
     cs = CompareSignatures()

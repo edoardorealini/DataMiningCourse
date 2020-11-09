@@ -8,14 +8,14 @@ import time
 if __name__ == "__main__":
 
     
-    filename = '../data/1.txt'
+    filename = '../data/11.txt'
     shingling = Shingling(filename)
     shingling.load_clean_document()
     shingling.build_shingles(6)
     shingling.hash_shingles()
     #print(shingling.shingles)
 
-    filename2 = '../data/11.txt'
+    filename2 = '../data/12.txt'
     shingling2 = Shingling(filename2)
     shingling2.load_clean_document()
     shingling2.build_shingles(6)

@@ -12,7 +12,7 @@ if __name__ == "__main__":
     print("Running the full pipeline")
 
     parser = argparse.ArgumentParser(description='Parameters')
-    parser.add_argument('-ks', dest='k_shingles', type=int, help='Dimension of Shingles',  nargs='?', default=10)
+    parser.add_argument('-ks', dest='k_shingles', type=int, help='Dimension of Shingles',  nargs='?', default=6)
     parser.add_argument('-nhf', dest='n_hash_functions', type=int, help='Number of hash functions to use for MinHashing',  nargs='?', default=100)
     parser.add_argument('-b', dest='bands', type=int, help='Bands for LSH procedure',  nargs='?', default=20)
     parser.add_argument('-st', dest='similarity_threshold', type=float, help='Similarity threshold for LSH procedure',  nargs='?', default=0.5)
@@ -26,18 +26,19 @@ if __name__ == "__main__":
     print("Similarity threshold: ", args.similarity_threshold)
 
     file_names = []
-    for i in range(1, 13):
+    for i in range(1, 11):
         file_name = "../data/" + str(i) + ".txt"
         file_names.append(file_name)
     
     signatures_dict = {}
 
     c_sig = CompareSignatures()
-    c_set = CompareSets()
-    m = MinHashing()
+    c_set = CompareSets()    
 
     for i, file in enumerate(file_names):
         s = Shingling(file)
+        m = MinHashing()
+
         s.load_clean_document()
         s.build_shingles(k_length=args.k_shingles)
         s.hash_shingles()
@@ -51,14 +52,12 @@ if __name__ == "__main__":
 
     #print("Signatures dict before banding: ", lsh.signatures_dict)
 
-    lsh.find_pairs(bands=args.bands, similarity_threshold=args.similarity_threshold)
+    lsh.find_pairs_over_th(bands=args.bands, similarity_threshold=args.similarity_threshold)
 
     """ 
     print("\nAll Candidates: ", lsh.all_candidate_pairs)
     print("\nSignatures dict after banding: ", lsh.signatures_dict)
      
     """
-    print("\nHashed bands: ", lsh.hashed_bands)
     print("\nAll Candidates: ", lsh.all_candidate_pairs)
-    print("\nFinal candidates: ", lsh.final_pairs)
-
+    print("\nFinal tuples: ", lsh.final_pairs)
