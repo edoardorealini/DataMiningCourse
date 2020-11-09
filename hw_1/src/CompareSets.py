@@ -19,6 +19,6 @@ class CompareSets:
 		union_cardinality = len(set_one.union(set_two))
 		#print(union_cardinality)
 
-		jaccard_similarity = intersection_cardinality / union_cardinality
+		jaccard_similarity = round(intersection_cardinality / union_cardinality, 3)
 
 		return jaccard_similarity

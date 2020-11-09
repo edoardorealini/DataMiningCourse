@@ -8,12 +8,15 @@ class Shingling:
 
     def __init__(self, document_filename):
         self.document_filename = document_filename
+        self.document_id = None
         self.document = ""
         self.shingles = None
         self.hashed_shingles = None
 
     def load_clean_document(self):
         with open(self.document_filename) as file:
+            self.document_id = self.document_filename[8:10]
+            self.document_id = int(self.document_id.replace(".",""))
             text = file.read()
             text = text.lower() # All text to lower cases
             text = text.replace("  ", " ") # Removing useless double spaces
