@@ -11,6 +11,7 @@ class LSH:
         self.signatures_dict = signatures_dict
         self.all_candidate_pairs = None
         self.final_pairs = None
+        self.hashed_bands = None
 
 
     # First we have to divide each shingle list into some bands
@@ -29,6 +30,13 @@ class LSH:
         hash = hashlib.sha1(str(band_value).encode("UTF-8")).hexdigest()
         hash = int(hash, 16) % (2**32 - 1)
         return hash
+
+    
+    def my_hash_tuples(self, band):
+        band_tuple = tuple(band)
+        hash_value = hash(band_tuple)
+
+        return hash_value
 
 
     def filter_threshold(self, all_candidate_pairs, similarity_threshold):
@@ -60,10 +68,16 @@ class LSH:
                 band = self.signatures_dict[signature][band_id] # Band is now a list 
                 # Here we have to hash the list. 
                 # We can do that by summing the elements in the list and hashing them
-                band_value = sum(band)
-                hashed_band = self.my_hash(band_value)
+                # This assumption is wrong
+
+                #band_value = sum(band)
+                #hashed_band = self.my_hash(band_value)
+
+                hashed_band = self.my_hash_tuples(band)
                 hashed_bands[band_id].append(hashed_band)
 
+        self.hashed_bands = hashed_bands
+        
         # Now here we have to search for couples inside the hashes_bands dictionary
         # The result of this snippet is creating lists containing the document ids
         # for which the hashed bands are equal
