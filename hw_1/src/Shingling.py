@@ -42,7 +42,8 @@ class Shingling:
         for shingle in self.shingles:
             hashed_shingles.append(self.my_hash(shingle))
             
-        self.hashed_shingles = sorted(hashed_shingles)
+        #self.hashed_shingles = sorted(hashed_shingles)
+        self.hashed_shingles = hashed_shingles
 
 
     def my_hash(self, shingle):

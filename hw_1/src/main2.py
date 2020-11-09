@@ -15,7 +15,7 @@ if __name__ == "__main__":
     parser.add_argument('-ks', dest='k_shingles', type=int, help='Dimension of Shingles',  nargs='?', default=10)
     parser.add_argument('-nhf', dest='n_hash_functions', type=int, help='Number of hash functions to use for MinHashing',  nargs='?', default=100)
     parser.add_argument('-b', dest='bands', type=int, help='Bands for LSH procedure',  nargs='?', default=20)
-    parser.add_argument('-st', dest='similarity_threshold', type=float, help='Similarity threshold for LSH procedure',  nargs='?', default=0.7)
+    parser.add_argument('-st', dest='similarity_threshold', type=float, help='Similarity threshold for LSH procedure',  nargs='?', default=0.5)
 
     args = parser.parse_args()
 
@@ -49,12 +49,16 @@ if __name__ == "__main__":
 
     lsh = LSH(signatures_dict=signatures_dict)
 
-    print("Signatures dict before banding: ", lsh.signatures_dict)
+    #print("Signatures dict before banding: ", lsh.signatures_dict)
 
     lsh.find_pairs(bands=args.bands, similarity_threshold=args.similarity_threshold)
 
+    """ 
     print("\nAll Candidates: ", lsh.all_candidate_pairs)
     print("\nSignatures dict after banding: ", lsh.signatures_dict)
+     
+    """
     print("\nHashed bands: ", lsh.hashed_bands)
+    print("\nAll Candidates: ", lsh.all_candidate_pairs)
     print("\nFinal candidates: ", lsh.final_pairs)
 

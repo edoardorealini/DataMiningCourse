@@ -15,7 +15,7 @@ if __name__ == "__main__":
     shingling.hash_shingles()
     #print(shingling.shingles)
 
-    filename2 = '../data/2.txt'
+    filename2 = '../data/11.txt'
     shingling2 = Shingling(filename2)
     shingling2.load_clean_document()
     shingling2.build_shingles(6)

@@ -1,4 +1,5 @@
 from LSH import LSH
+from CompareSignatures import *
 
 if __name__ == "__main__":
 
@@ -20,4 +21,8 @@ if __name__ == "__main__":
     print("Signatures dict after banding: ", lsh.signatures_dict)
     print("Hashed bands: ", lsh.hashed_bands)
     print("Final candidates: ", lsh.final_pairs)
+
+    cs = CompareSignatures()
+    similarity = cs.compare_signatures(signatures[0], signatures[2])
+    print("Signature similarity 1-3: ", similarity)
 

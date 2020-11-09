@@ -34,7 +34,7 @@ class LSH:
     
     def my_hash_tuples(self, band):
         band_tuple = tuple(band)
-        hash_value = hash(band_tuple)
+        hash_value = hash(band_tuple) % 1039
 
         return hash_value
 
@@ -48,6 +48,8 @@ class LSH:
                 filtered_pairs.append(pair)
 
         return filtered_pairs 
+
+    #def find_candidates(self, bands, similarity_threshold):
 
 
     def find_pairs(self, bands, similarity_threshold):
@@ -77,7 +79,7 @@ class LSH:
                 hashed_bands[band_id].append(hashed_band)
 
         self.hashed_bands = hashed_bands
-        
+
         # Now here we have to search for couples inside the hashes_bands dictionary
         # The result of this snippet is creating lists containing the document ids
         # for which the hashed bands are equal
