@@ -1,0 +1,18 @@
+Testing and showing the LSH pipeline with parameters
+Shingle dimension:  5
+MinHash # functions:  100
+Number of bands:  25
+Similarity threshold:  0.1
+Verbose:  False
+
+
+Filtered couples over Threshold - Jaccard:  [(1, 5), (1, 9), (2, 3), (3, 4), (3, 8), (3, 10), (4, 8), (4, 9), (4, 10), (5, 6), (5, 8), (5, 9), (5, 10), (8, 9), (8, 10), (9, 10)]
+Time Elapsed Jaccard:  0.030331850051879883
+
+
+Filtered couples over Threshold - MinHashing:  [(1, 3), (1, 5), (1, 8), (1, 9), (1, 10), (2, 3), (2, 10), (3, 5), (3, 7), (3, 8), (3, 10), (4, 10), (5, 6), (5, 7), (5, 9), (5, 10), (7, 8), (8, 9), (8, 10), (9, 10)]
+Time Elapsed MinHashing:  0.000308990478515625
+
+
+Filtered couples over Threshold - LSH:  [(9, 10), (4, 10), (1, 8), (3, 10), (8, 9), (1, 9)]
+Time Elapsed LSH:  0.0010175704956054688
