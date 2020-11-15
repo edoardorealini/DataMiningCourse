@@ -28,7 +28,7 @@ class Apriori:
 
 		self.baskets = baskets
 
-
+	# algorithm trial function
 	def load_data_slide(self):
 
 		file = open(self.filename, 'r')
@@ -113,6 +113,48 @@ class Apriori:
 								Ck[itemset] += 1
 			
 		return Ck
+
+	def filtered_plot(self, stages_number):
+
+		filtered_card = []
+		for filtere in self.filtered:
+			filtered_card.append(len(filtere.keys()))
+
+		print(filtered_card)
+
+		stages = list(range(1, stages_number + 1))
+
+		plt.plot(np.array(stages), np.array(filtered_card))
+		plt.ylabel("Frequent Items Size")
+		plt.xlabel("Stages")
+		plt.title("Frequent Items over Stages")
+		plt.grid()
+		plt.show()
+
+	def candidates_plot(self, stages_number):
+
+		candidates_card = []
+		for candidate in self.candidates:
+			candidates_card.append(len(candidate.keys()))
+
+		stages = list(range(1, stages_number + 1))
+
+		plt.plot(np.array(stages), np.array(candidates_card))
+		plt.ylabel("Candidates Size")
+		plt.xlabel("Stages")
+		plt.title("Candidates over Stages")
+		plt.grid()
+		plt.show()
+
+	def timelapsed_plot(self, times, stages_number):
+
+		stages = list(range(1, stages_number + 1))
+		plt.plot(np.array(stages), np.array(times))
+		plt.ylabel("Time Elapsed")
+		plt.xlabel("Stages")
+		plt.title("Time over Stages")
+		plt.grid()
+		plt.show()
 
 
 
