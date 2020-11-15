@@ -28,19 +28,6 @@ class Apriori:
 
 		self.baskets = baskets
 
-	# algorithm trial function
-	def load_data_slide(self):
-
-		file = open(self.filename, 'r')
-
-		baskets = []
-		for line in file: 
-			basket = line.split(' ')
-			basket = list(map(int, basket))
-			baskets.append(basket)
-
-		self.baskets = baskets
-
 	def generate_candidates_ck(self, baskets, frequent_items, k_tuple):
 
 		if (k_tuple == 1):
@@ -155,6 +142,20 @@ class Apriori:
 		plt.title("Time over Stages")
 		plt.grid()
 		plt.show()
+
+
+	# algorithm trial function
+	# def load_data_slide(self):
+
+	# 	file = open(self.filename, 'r')
+
+	# 	baskets = []
+	# 	for line in file: 
+	# 		basket = line.split(' ')
+	# 		basket = list(map(int, basket))
+	# 		baskets.append(basket)
+
+	# 	self.baskets = baskets
 
 
 
