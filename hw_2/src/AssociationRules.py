@@ -20,7 +20,7 @@ class AssociationRules:
     def powerset(self, input_iterable):
         "powerset([1,2,3]) --> (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)"
         s = list(input_iterable)
-        return list(chain.from_iterable(combinations(s, r) for r in range(1, len(s)+1)))
+        return list(chain.from_iterable(combinations(s, r) for r in range(1, len(s))))
 
         
     # Util method that flattens a list given in input
@@ -30,9 +30,6 @@ class AssociationRules:
         for sublist in input_list:
             for item in sublist:
                 flat_list.append(item)
-
-        # Removing eventual duplicates
-        flat_list = list(set(flat_list))
 
         return flat_list
     
@@ -58,10 +55,12 @@ class AssociationRules:
         rules = []
 
         subsets = self.powerset(frequent_itemset)
+        #print("Subsets: ", subsets)
 
         for subset in subsets:
             antecedent = set(subset)
             consequence = frequent_itemset.difference(antecedent)
+            #print(subset, antecedent, consequence)
 
             rules.append([antecedent, consequence])
 
@@ -75,8 +74,11 @@ class AssociationRules:
 
         for rule in association_rules_list:
             confidence = self.compute_confidence(rule)
-            if self.compute_confidence(rule) > confidence_threshold:
-                filtered_rules.append(rule.append(confidence))
+            #print("Rule: ", rule, " Confidence: ", confidence)
+            if confidence > confidence_threshold:
+                r = rule.copy()
+                r.append(confidence)
+                filtered_rules.append(r)
 
         return filtered_rules
 
@@ -108,10 +110,13 @@ class AssociationRules:
                 continue # skipping the single-item itemsets (the cannot generate any rule!          
 
             else:
-                print("Computing the itemsets with ", i + 1, " elements")
+                #print("Computing the itemsets with ", i + 1, " elements")
                 for itemset, support in itemset_group.items():
+                    #print("\nItemset ", itemset, " Support: ", support)
                     association_rules = self.generate_association_rules(set(itemset), support)
+                    #print("All rules: ", association_rules)
                     filtered_rules = self.filter_association_rules(association_rules, confidence_threshold)
+                    #print("Filtered rules: ", filtered_rules)
                     self.association_rules.append(filtered_rules)
 
         self.association_rules = self.flat_list(self.association_rules)

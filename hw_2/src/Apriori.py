@@ -107,7 +107,7 @@ class Apriori:
 		for filtere in self.filtered:
 			filtered_card.append(len(filtere.keys()))
 
-		print(filtered_card)
+		#print(filtered_card)
 
 		stages = list(range(1, stages_number + 1))
 
