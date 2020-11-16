@@ -6,6 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt 
 
 from Apriori import Apriori
+from AssociationRules import AssociationRules
 
 if __name__ == '__main__':
 
@@ -13,7 +14,7 @@ if __name__ == '__main__':
 
 	parser = argparse.ArgumentParser(description='Parameters')
 	parser.add_argument('-k', dest='k_tuple', type=int, help='Number of k-tuples for frequent items', nargs='?', default=3)
-	parser.add_argument('-s', dest='support', type=int, help='Support of itemsets', nargs='?', default=1000)
+	parser.add_argument('-s', dest='support', type=int, help='Support of itemsets', nargs='?', default=5000)
 	parser.add_argument('-c', dest='confidence', type=int, help='Confidence of itemsets', nargs='?', default=0.5)
 
 	args = parser.parse_args()
@@ -37,8 +38,14 @@ if __name__ == '__main__':
 	apriori.generate_candidates_ck(baskets, apriori.filtered[1], 3)
 	apriori.filter_candidates(apriori.candidates[2], args.support)
 
-	# for el in apriori.candidates:
-	# 	print(el)
+	#for el in apriori.filtered:
+	#	print(el)
+
+	rules_generator = AssociationRules(apriori.filtered)
+	rules = rules_generator.generate_all_rules(args.confidence)
+
+	for rule in rules:
+		print(rule)
 
 
 
