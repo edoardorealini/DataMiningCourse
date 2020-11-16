@@ -90,7 +90,7 @@ class Apriori:
 				# case k>=3
 				else:
 					for itemset in itemsets:
-						combinations = list(itertools.combinations(itemset, 2))
+						combinations = list(itertools.combinations(itemset, k_tuple - 1))
 						combinations = set(combinations)
 						check_combinations = combinations.intersection(set(items_lk))
 						if (check_combinations == combinations):
