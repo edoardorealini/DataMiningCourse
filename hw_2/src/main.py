@@ -13,9 +13,9 @@ if __name__ == '__main__':
 	print("KTH Royal Insitute of Technology - 2020\n")
 
 	parser = argparse.ArgumentParser(description='Parameters')
-	parser.add_argument('-k', dest='k_tuples', type=int, help='Number of k-tuples for building frequent itemsets', nargs='?', default=4)
+	parser.add_argument('-k', dest='k_tuples', type=int, help='Number of k-tuples for building frequent itemsets', nargs='?', default=6)
 	parser.add_argument('-s', dest='support', type=int, help='Support threshold for filtering itemsets', nargs='?', default=700)
-	parser.add_argument('-c', dest='confidence', type=int, help='Confidence threshold for association rules filtering', nargs='?', default=0.8)
+	parser.add_argument('-c', dest='confidence', type=int, help='Confidence threshold for association rules filtering', nargs='?', default=0.9)
 	parser.add_argument('-p', dest='plot', type=bool, help='Set to True to show interesting plots', nargs='?', default=False)
 
 	args = parser.parse_args()
@@ -62,8 +62,6 @@ if __name__ == '__main__':
 
 	end = time.time()
 	print("\nEnd Apriori Pipeline, time elapsed: ", end - start, " sec.")
-
-	#print(apriori.filtered)
 
 	rule_generator = AssociationRules(apriori.filtered)
 	start = time.time()
