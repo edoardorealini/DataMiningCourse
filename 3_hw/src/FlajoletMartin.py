@@ -73,8 +73,8 @@ if __name__ == '__main__':
 		fill = multiset_len
 		while fill > 0:
 			random_el = random.randint(0, n_elements)
-			multiplicity_el = random.randint(1, 1 + int(multiset_len / 1000))
-			#multiplicity_el = 1
+			#multiplicity_el = random.randint(1, 1 + int(multiset_len / 1000))
+			multiplicity_el = 1
 			multiset.add(random_el, multiplicity_el)
 			fill -= multiplicity_el
 

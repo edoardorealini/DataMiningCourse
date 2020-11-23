@@ -14,9 +14,9 @@ class HyperLogLog:
 	def __init__(self, n_buckets):
 
 		# number of bits -> b bits
-		self.bits = math.ceil(math.log2(n_buckets))
+		self.bits = int(np.ceil(np.log2(n_buckets)))
 
-		# number of registers -> size m of M / p=2^b
+		# number of registers -> size m/p of M = 2^b
 		self.num_registers = int(2 ** self.bits)
 
 		# initialization of the counters -> array M
@@ -33,20 +33,19 @@ class HyperLogLog:
 
 		for element in elements:
 			hashed_element = self.hash_element(element)
-			index_j = bin(int("0b1", 2) + int(bin(hashed_element)[:self.bits+1], 2))
-			index_j = int(index_j, 2)
+			j = hashed_element & (2**self.bits - 1)
+			w = hashed_element >> self.bits
 			# let ρ(s) represent the position of the leftmost 1 (equivalently one plus the length of the initial run of 0’s)
-			lsb = bin(hashed_element)[self.bits+1:]
-			lsb = int(lsb, 2)
-			#self.registers[index_j] = max(self.registers[index_j], 1 + self.lsb_index(int(bin(hashed_element[self.bits+1:])), 2))
-			self.registers[index_j] = max(self.registers[index_j], 1 + self.lsb_index(lsb))
+			self.registers[j] = max(self.registers[j], 1+self.lsb_index(w))
 
 	def estimate_cardinality(self):
 
 		# Z = (sum_{j=0}^{p-1} 2^-M[j])^-1 
-		Z_estimate = np.sum(np.exp2(-1 * self.registers)) ** -1
+		Z_estimate = np.sum(np.exp2(self.registers * -1)) ** -1
 		# E = alpha_p * pˆ2
 		E_estimate = self.alpha[self.num_registers] * self.num_registers**2 * Z_estimate
+
+		print(E_estimate)
 
 		# small range correction case
 		if E_estimate <= (5/2) * self.num_registers:
@@ -80,7 +79,7 @@ class HyperLogLog:
 
 	# hashing elements D -> {0,1}^32
 	def hash_element(self, element):
-		return int(hashlib.sha1(str(element).encode('utf-8')).hexdigest(), 16) % (2**32-1)
+		return int(hashlib.md5(str(element).encode('utf-8')).hexdigest(), 16) % (2**32)
 
 	def lsb_index(self, element):
 		return (element&-element).bit_length()-1
@@ -88,8 +87,9 @@ class HyperLogLog:
 	def union(self, hll2):
 		self.registers = np.maximum(self.registers, hll2.registers)
 
-	def prova(self, elements):
+	def calculate_cardinality(self, elements):
 		self.add(elements)
+		#self.calculate_with_buckets(elements)
 		return self.estimate_cardinality()
 
 
@@ -98,7 +98,7 @@ if __name__ == '__main__':
 
 	start = time.time()
 
-	multiset_len = 5000
+	multiset_len = 1000
 	n_elements = 2**32 - 1
 
 	# Multiset generator 
@@ -121,8 +121,7 @@ if __name__ == '__main__':
 	print("PROVA", len(np.array(list(multiset))))
 
 	hyperloglog = HyperLogLog(32)	
-	print("HyperLogLog cardinality approx: ", hyperloglog.prova(np.array(list(multiset))))
-
+	print("HyperLogLog cardinality approx: ", hyperloglog.calculate_cardinality(np.array(list(multiset))))
 
 	end = time.time()
 	print("Time elapsed: ", round(end-start,3))
