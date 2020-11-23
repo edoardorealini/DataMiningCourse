@@ -1,12 +1,9 @@
-from abc import ABC
-import pandas as pd
-
-from graph.edge import Edge
-from graph.graph import Graph
-from graph.node import Node
+from graph.Edge import Edge
+from graph.Graph import Graph
+from graph.Node import Node
 
 
-class GraphReader(ABC):
+class GraphReader():
 
 
     def __init__(self, path, is_undirected=True):
@@ -24,7 +21,7 @@ class GraphReader(ABC):
         edges = []
         with open(filename) as f:
             for line in f:
-                edges.append([int(n) for n in line.strip().split()[:-1]])
+                edges.append([int(n) for n in line.split('\t')])
 
         nodes = []
         for e in edges[:-1]:

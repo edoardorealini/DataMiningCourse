@@ -1,5 +1,5 @@
-from Node import Node
-
+from graph.Node import Node
+from graph.Edge import Edge
 
 class Graph:
 
@@ -21,10 +21,13 @@ class Graph:
 
     
     def add_edge(self, edge):
-        self.edges.append(edge)
-        self.adjacent_list[edge.source.id].append(edge.dest)
-        self.adjacent_list_transpose[edge.dest.id].append(edge.source)
-
+        try:
+            self.edges.append(edge)
+            self.adjacent_list[edge.source.id].append(edge.dest)
+            self.adjacent_list_transpose[edge.dest.id].append(edge.source)
+        except:
+            print('Source id: ', edge.source.id)
+            print('Dest id: ', edge.dest.id)
 
     def get_adjacent_nodes(self, node):
         return self.adjacent_list[node.id]
