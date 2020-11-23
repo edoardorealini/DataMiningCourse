@@ -45,8 +45,6 @@ class HyperLogLog:
 		# E = alpha_p * pˆ2
 		E_estimate = self.alpha[self.num_registers] * self.num_registers**2 * Z_estimate
 
-		print(E_estimate)
-
 		# small range correction case
 		if E_estimate <= (5/2) * self.num_registers:
 			num_zero_register = self.calculate_zero_registers()
@@ -84,16 +82,13 @@ class HyperLogLog:
 	def lsb_index(self, element):
 		return (element&-element).bit_length()-1
 
-	def union(self, hll2):
-		self.registers = np.maximum(self.registers, hll2.registers)
+	def union(self, hyploglog):
+		self.registers = np.maximum(self.registers, hyploglog.registers)
 
 	def calculate_cardinality(self, elements):
 		self.add(elements)
-		#self.calculate_with_buckets(elements)
 		return self.estimate_cardinality()
 
-
-'''
 if __name__ == '__main__':
 
 	start = time.time()
@@ -126,4 +121,3 @@ if __name__ == '__main__':
 	end = time.time()
 	print("Time elapsed: ", round(end-start,3))
 
-'''
