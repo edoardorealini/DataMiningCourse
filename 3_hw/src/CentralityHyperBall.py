@@ -47,7 +47,7 @@ class CentralityHyperBall():
 
             # Fill the cardinality matrix to be used for centrality computation, for every node.
             # Here we fill the cardinality at instant t = 1, in the next method we will start from t = 2
-            self.hyper_ball_cardinalities[node.id][1] = self.hyperloglog_balls_cumulative[node.id].estimate_cardinalities()
+            self.hyper_ball_cardinalities[node.id][1] = self.hyperloglog_balls_cumulative[node.id].estimate_cardinality()
             self.hyperloglog_balls_diff[node.id][0].add(adjacent_nodes_id)
             #print(self.hyper_ball_cardinalities[node.id][0])
 
@@ -68,7 +68,7 @@ class CentralityHyperBall():
 
                 self.hyperloglog_balls_cumulative[node.id].union(self.hyperloglog_balls_diff[node.id][1])
 
-                self.hyper_ball_cardinalities[node.id][t] = self.hyperloglog_balls_cumulative[node.id].estimate_cardinalities()
+                self.hyper_ball_cardinalities[node.id][t] = self.hyperloglog_balls_cumulative[node.id].estimate_cardinality()
             
             for node in self.graph.nodes:
                 self.hyperloglog_balls_diff[node.id].pop(0) # Makes the counter at pos t+1 -> pos t by removing the first element

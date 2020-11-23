@@ -21,7 +21,7 @@ class GraphReader():
         edges = []
         with open(filename) as f:
             for line in f:
-                edges.append([int(n) for n in line.split('\t')])
+                edges.append([int(n) for n in line.strip().split()][:-1])
 
         nodes = []
         for e in edges[:-1]:

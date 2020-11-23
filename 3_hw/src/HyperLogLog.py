@@ -85,11 +85,15 @@ class HyperLogLog:
 	def lsb_index(self, element):
 		return (element&-element).bit_length()-1
 
+	def union(self, hll2):
+		self.registers = np.maximum(self.registers, hll2.registers)
+
 	def prova(self, elements):
 		self.add(elements)
 		return self.estimate_cardinality()
 
 
+'''
 if __name__ == '__main__':
 
 	start = time.time()
@@ -123,8 +127,4 @@ if __name__ == '__main__':
 	end = time.time()
 	print("Time elapsed: ", round(end-start,3))
 
-
-
-	
-
-	
+'''
