@@ -8,9 +8,9 @@ from multiset import Multiset
 
 class FlajoletMartin:
 
-	def __init__(self, l_size_group, k_groups):
+	def __init__(self, n_elements, l_size_group, k_groups):
 
-		# amount of bits to be used 
+		# amount of bits to be used (L)
 		self.length = math.ceil(math.log2(n_elements))
 
 		self.l = l_size_group
