@@ -13,7 +13,7 @@ graph = reader.read_graph()
 hyperball = CentralityHyperBall(graph=graph, num_buckets=32)
 hyperball.compute_hyper_balls()
 
-ids = [range(10)]
+ids = [el for el in range(10)]
 
 for idx in ids:
     node = graph.get_node(id=idx)
