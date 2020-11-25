@@ -26,14 +26,16 @@ if __name__ == '__main__':
 	n_elements = 2**32 - 1
 	multiset = generate_multiset(multiset_len, n_elements)
 
-	k = 50
-	l = 20
+	print("True cardinality: ", len(list(multiset)))
+
+	l = 50
+	k = 20
 	fm = FlajoletMartin(n_elements, l, k)
 
-	# start = time.time()
-	# print("FlajoletMartin cardinality approx: ", fm.estimate_cardinality(list(multiset)))
-	# end = time.time()
-	# print("Time elapsed: ", round(end-start,3))
+	start = time.time()
+	print("FlajoletMartin cardinality approx: ", fm.estimate_cardinality(list(multiset)))
+	end = time.time()
+	print("Time elapsed: ", round(end-start,3))
 
 	n_buckets = 32
 	hyperloglog = HyperLogLog(n_buckets)

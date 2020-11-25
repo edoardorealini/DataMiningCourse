@@ -33,8 +33,6 @@ class FlajoletMartin:
 	# compute the max r(a) seen, hence the max numbers of 0's in the tail
 	def calculate_r(self, elements):
 
-		length = self.length
-		print(length)
 		hashed_idx = []
 		for element in elements:
 			hashed_idx.append(self.lsb_index(self.hash_element(element)))
