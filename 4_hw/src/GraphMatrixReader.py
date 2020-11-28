@@ -17,7 +17,7 @@ class GraphMatrixReader:
     # The resulting matrix is the Adjacency matrix of the given graph    
     def read_simple_graph(self, path):
 
-        df = pd.read_csv(path, sep=',')
+        df = pd.read_csv(path, sep=',', columns=['start_node', 'end_node'])
 
         # Getting the number of nodes in the dataset
         unique_start = df['start_node'].unique().tolist()

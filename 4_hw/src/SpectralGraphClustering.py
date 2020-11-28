@@ -36,6 +36,7 @@ class SpectralGraphClustering:
 
 
     # Computes the whole affinity matrix as a np ndarray
+    # TODO a better implementation exixsts for sure
     def compute_affinity(self, sigma=1):
 
         matrix = self.np_graph_matrix
@@ -76,6 +77,7 @@ class SpectralGraphClustering:
         D_powered = self.D.copy()
         la.fractional_matrix_power(D_powered, -1/2)
 
+        # TODO check if these dot products are fine!
         step_1 = D_powered.dot(self.affinity_matrix)
         L = step_1.dot(D_powered)
 
@@ -86,19 +88,23 @@ class SpectralGraphClustering:
     
     def compute_X(self, k):
         eig_values, eig_vectors = np.linalg.eig(self.L)
+        eig_tuples = []
 
-        eig_tuples = list(zip(eig_values, eig_vectors))
-        # TODO there is a problem with this following sorting, the eigenvalues that
-        # Come after this are not coherent, FIX
-        sorted(eig_tuples, key = lambda tup: tup[0])
+        # Problem should be now fixed, the results in eig_tuples after the sortin operation are correct
+
+        for i, eig in enumerate(eig_values):
+            eig_tuples.append((eig, eig_vectors[:, i]))
+
+        eig_tuples = sorted(eig_tuples, key = lambda tup: tup[0], reverse=True)
 
         # Selecting the top k eigenvectors
         eig_tuples = eig_tuples[:k]
+        #print(eig_tuples)
         vectors = [tup[1] for tup in eig_tuples]
         np_vectors = np.array(vectors)
 
         # We want the eigenvectors to be on the columns
-        np.transpose(np_vectors) 
+        np_vectors = np.transpose(np_vectors) 
         
         self.X = np_vectors
 
@@ -108,7 +114,22 @@ class SpectralGraphClustering:
     def compute_Y(self):
 
         # The normalization should be useless, numpy already normalizes the eigenvectors based on their length
-        self.Y = self.X
+        # Normalizing anyway, you never know
+
+        y_rows = []
+
+        for row_id in range(self.matrix_dimension):
+            row = self.X[row_id]
+
+            squared = np.square(row)
+            row_sum = np.sum(squared)
+            unit_factor = np.sqrt(row_sum)
+
+            row = np.divide(row, unit_factor)
+
+            y_rows.append(row)            
+
+        self.Y = np.array(y_rows)
 
         return self.Y
 
@@ -124,6 +145,8 @@ class SpectralGraphClustering:
         # TODO Here with the labels we have to divide the entry points (the nodes) into their specific clusters
         # Basically each row of the Y matrix represents a node (the node name is the id of the row ??)
         # we can build a dictionary that assiciates per each cluster ID the list of nodes that are predicted to be in it
+
+        return self.labels
 
     def clusterize(self, k):
 

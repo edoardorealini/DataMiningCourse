@@ -25,6 +25,11 @@ if __name__ == "__main__":
     spectral_clustering.compute_D()
     spectral_clustering.compute_L()
 
-    spectral_clustering.compute_X(4)
+    spectral_clustering.compute_X(30)
+    spectral_clustering.compute_Y()
 
+    spectral_clustering.clusterize_Y(6)
 
+    print(spectral_clustering.labels)
+
+    print(len(spectral_clustering.labels))
