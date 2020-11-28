@@ -17,7 +17,7 @@ class GraphMatrixReader:
     # The resulting matrix is the Adjacency matrix of the given graph    
     def read_simple_graph(self, path):
 
-        df = pd.read_csv(path, sep=',', columns=['start_node', 'end_node'])
+        df = pd.read_csv(path, sep=',', names=['start_node', 'end_node'])
 
         # Getting the number of nodes in the dataset
         unique_start = df['start_node'].unique().tolist()
@@ -33,10 +33,16 @@ class GraphMatrixReader:
 
         ones = np.ones(df.shape[0])
 
-        col1 = df["start_node"]
-        col2 = df["end_node"]
+        col1 = df["start_node"].to_numpy()
+        col2 = df["end_node"].to_numpy()
 
-        graph_matrix =  sps.coo_matrix((ones, (col1, col2)), shape=(self.number_of_nodes + 1, self.number_of_nodes + 1))
+        col_ones = np.ones(col1.shape[0])
+
+        # Little trick, now rememeber that the node_ids are all -1 invalue wrt the originals
+        col1 = np.subtract(col1, col_ones)
+        col2 = np.subtract(col2, col_ones)
+
+        graph_matrix =  sps.coo_matrix((ones, (col1, col2)), shape=(self.number_of_nodes, self.number_of_nodes))
 
         self.sps_graph_matrix = graph_matrix.tocsr()
         self.np_graph_matrix = graph_matrix.toarray()

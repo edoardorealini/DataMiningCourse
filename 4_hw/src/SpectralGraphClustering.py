@@ -23,6 +23,7 @@ class SpectralGraphClustering:
         self.Y = None
 
         self.labels = None
+        self.clusters = {}
 
 
     # Computes the affinity between two rows of the matrix that represents the graph
@@ -36,7 +37,6 @@ class SpectralGraphClustering:
 
 
     # Computes the whole affinity matrix as a np ndarray
-    # TODO a better implementation exixsts for sure
     def compute_affinity(self, sigma=1):
 
         matrix = self.np_graph_matrix
@@ -86,7 +86,7 @@ class SpectralGraphClustering:
         return self.L
 
     
-    def compute_X(self, k):
+    def compute_X(self, top_k_ev):
         eig_values, eig_vectors = np.linalg.eig(self.L)
         eig_tuples = []
 
@@ -98,7 +98,7 @@ class SpectralGraphClustering:
         eig_tuples = sorted(eig_tuples, key = lambda tup: tup[0], reverse=True)
 
         # Selecting the top k eigenvectors
-        eig_tuples = eig_tuples[:k]
+        eig_tuples = eig_tuples[:top_k_ev]
         #print(eig_tuples)
         vectors = [tup[1] for tup in eig_tuples]
         np_vectors = np.array(vectors)
@@ -134,23 +134,36 @@ class SpectralGraphClustering:
         return self.Y
 
 
-    def clusterize_Y(self, k):
+    def clusterize_Y(self, k_clusters):
 
         # Searching for K clusters using KMeans from sklearn
-        kmeans = KMeans(n_clusters=k, random_state=0)
+        kmeans = KMeans(n_clusters=k_clusters, random_state=0)
         kmeans.fit(self.Y)
 
         self.labels = kmeans.labels_
 
-        # TODO Here with the labels we have to divide the entry points (the nodes) into their specific clusters
-        # Basically each row of the Y matrix represents a node (the node name is the id of the row ??)
-        # we can build a dictionary that assiciates per each cluster ID the list of nodes that are predicted to be in it
+        for i in range(k_clusters):
+            self.clusters[i] = []
 
-        return self.labels
+        for i in range(self.matrix_dimension):
+            self.clusters[self.labels[i]].append(i + 1) #Here is where we fix the trick
 
-    def clusterize(self, k):
+  
+        return self.labels, self.clusters
 
-        # TODO Entry point fo the class, this method calls the sequence cof actions and creates a dictionary
-        # For each node ID (as key) we map the cluster (as value) in the dictionary
 
-        pass
+    # Entry point fo the class, this method calls the sequence cof actions and creates a dictionary
+    # For each node ID (as key) we map the cluster (as value) in the dictionary
+
+    def clusterize_graph(self, k=10, sigma=1, top_k_ev=10):
+
+        self.compute_affinity(sigma=sigma)
+        self.compute_D()
+        self.compute_L()
+
+        self.compute_X(top_k_ev=top_k_ev)
+        self.compute_Y()
+
+        return self.clusterize_Y(k_clusters=k)
+
+        
