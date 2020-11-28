@@ -7,8 +7,8 @@ class GraphMatrixReader:
 
     def __init__(self):
         self.sps_graph_matrix = None # Sparse matrix representing the graph in CSR format: for fast row entries
-        self.dense_graph_matrix = None
-        self.path = None
+        self.dense_graph_matrix = None # Dense version of the matrix
+        self.np_graph_matrix = None # np ndarray version of the matrix
 
         self.number_of_nodes = 0
 
@@ -16,6 +16,7 @@ class GraphMatrixReader:
     # And converts it into a scipy sparse matrix representation and returns
     # The resulting matrix is the Adjacency matrix of the given graph    
     def read_simple_graph(self, path):
+
         df = pd.read_csv(path, sep=',')
 
         # Getting the number of nodes in the dataset
@@ -28,7 +29,7 @@ class GraphMatrixReader:
 
         self.number_of_nodes = len(unique_nodes)
 
-        print("Loading graph with {} nodes.".format(self.number_of_nodes))
+        print("Reading graph from file {} with {} nodes.".format(path, self.number_of_nodes))
 
         ones = np.ones(df.shape[0])
 
@@ -38,6 +39,7 @@ class GraphMatrixReader:
         graph_matrix =  sps.coo_matrix((ones, (col1, col2)), shape=(self.number_of_nodes + 1, self.number_of_nodes + 1))
 
         self.sps_graph_matrix = graph_matrix.tocsr()
+        self.np_graph_matrix = graph_matrix.toarray()
         self.dense_graph_matrix = graph_matrix.todense()
 
         return self.sps_graph_matrix
