@@ -23,21 +23,25 @@ if __name__ == "__main__":
 
     print("Running clustering algorithm with parameters:")
     print("Number of clusters: ", k_clusters)
-    print("Sigma: ", sigma)
+    print("Sigma for affinity computation: ", sigma)
     print("Number of Top k Eigenvectors: ", top_k_ev)
 
     data_paths = ['../data/example1.dat', '../data/example2.dat'] 
 
     for data_path in data_paths:
-        print("--------------------------------------------------------------------------")
+        print("\n---------------------------------------------------------------------------------------------")
         print("Computing data from file: ", data_path)
 
         graph_reader = GraphMatrixReader()
         graph_reader.read_simple_graph(data_path)
 
-        spectral_clustering = SpectralGraphClustering(graph_reader.sps_graph_matrix)
-        labels, clusters = spectral_clustering.clusterize_graph()
+        matrix = graph_reader.graph_matrix
 
-        print("Labels: ", labels)
-        print("Clusters: ", clusters)
+        spectral_clustering = SpectralGraphClustering(graph_reader.graph_matrix)
+        labels, clusters = spectral_clustering.clusterize_graph(k=k_clusters, sigma=sigma, top_k_ev=top_k_ev)
+
+        print("\nLabels: ", labels)
+        print("\nClusters: ", clusters)
+
+
     

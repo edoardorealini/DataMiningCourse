@@ -6,10 +6,7 @@ import scipy.sparse as sps
 class GraphMatrixReader:
 
     def __init__(self):
-        self.sps_graph_matrix = None # Sparse matrix representing the graph in CSR format: for fast row entries
-        self.dense_graph_matrix = None # Dense version of the matrix
-        self.np_graph_matrix = None # np ndarray version of the matrix
-
+        self.graph_matrix = None # np ndarray version of the matrix
         self.number_of_nodes = 0
 
     # This method reads a graph in the format fo CSV file with 2 columns
@@ -33,22 +30,27 @@ class GraphMatrixReader:
 
         ones = np.ones(df.shape[0])
 
-        col1 = df["start_node"].to_numpy()
-        col2 = df["end_node"].to_numpy()
+        start_nodes = df["start_node"].values
+        end_nodes = df["end_node"].values
 
-        col_ones = np.ones(col1.shape[0])
+        #print(start_nodes)
+
+        col_ones = np.ones(start_nodes.shape[0])
 
         # Little trick, now rememeber that the node_ids are all -1 invalue wrt the originals
-        col1 = np.subtract(col1, col_ones)
-        col2 = np.subtract(col2, col_ones)
+        start_nodes = np.subtract(start_nodes, col_ones)
+        end_nodes = np.subtract(end_nodes, col_ones)
 
-        graph_matrix =  sps.coo_matrix((ones, (col1, col2)), shape=(self.number_of_nodes, self.number_of_nodes))
+        start_nodes = start_nodes.astype(np.int32)
+        end_nodes = end_nodes.astype(np.int32)
+        #print(start_nodes, "\n", end_nodes)
 
-        self.sps_graph_matrix = graph_matrix.tocsr()
-        self.np_graph_matrix = graph_matrix.toarray()
-        self.dense_graph_matrix = graph_matrix.todense()
+        graph_matrix = self.gen_matrix(row_indices=start_nodes, column_indices=end_nodes, shape=(self.number_of_nodes, self.number_of_nodes))
 
-        return self.sps_graph_matrix
+        self.graph_matrix = graph_matrix
+
+        return self.graph_matrix
+        
 
 
     def read_synthetic_graph(self, path):
@@ -57,3 +59,13 @@ class GraphMatrixReader:
         # Understand the structure of the file example2.dat and implement a method similar to the existing one
 
         pass
+
+
+    def gen_matrix(self, row_indices, column_indices, shape):
+
+        matrix = np.zeros(shape)
+
+        for row, column in zip(row_indices, column_indices):
+            matrix[row][column] = 1
+
+        return matrix

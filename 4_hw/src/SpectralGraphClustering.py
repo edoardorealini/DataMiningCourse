@@ -9,12 +9,10 @@ from sklearn.cluster import KMeans
 class SpectralGraphClustering:
 
 
-    def __init__(self, sps_graph_matrix):
+    def __init__(self, np_graph_matrix):
         # A scipy.sparse matrix in csr format
-        self.sps_graph_matrix = sps_graph_matrix
-        self.dense_graph_matrix = sps_graph_matrix.todense()
-        self.np_graph_matrix = sps_graph_matrix.toarray()
-        self.matrix_dimension = self.np_graph_matrix.shape[0]
+        self.graph_matrix = np_graph_matrix
+        self.matrix_dimension = self.graph_matrix.shape[0]
 
         self.affinity_matrix = np.zeros((self.matrix_dimension, self.matrix_dimension))
         self.D = np.zeros((self.matrix_dimension, self.matrix_dimension))
@@ -39,7 +37,7 @@ class SpectralGraphClustering:
     # Computes the whole affinity matrix as a np ndarray
     def compute_affinity(self, sigma=1):
 
-        matrix = self.np_graph_matrix
+        matrix = self.graph_matrix
 
         for row_id_1 in range(self.matrix_dimension):
             row1 = matrix[row_id_1]
@@ -74,13 +72,12 @@ class SpectralGraphClustering:
 
     # Laplacian matrix computation
     def compute_L(self):
+
         D_powered = self.D.copy()
         la.fractional_matrix_power(D_powered, -1/2)
 
-        # TODO check if these dot products are fine!
         step_1 = D_powered.dot(self.affinity_matrix)
         L = step_1.dot(D_powered)
-
         self.L = L
 
         return self.L
@@ -99,7 +96,6 @@ class SpectralGraphClustering:
 
         # Selecting the top k eigenvectors
         eig_tuples = eig_tuples[:top_k_ev]
-        #print(eig_tuples)
         vectors = [tup[1] for tup in eig_tuples]
         np_vectors = np.array(vectors)
 
@@ -165,5 +161,4 @@ class SpectralGraphClustering:
         self.compute_Y()
 
         return self.clusterize_Y(k_clusters=k)
-
         
