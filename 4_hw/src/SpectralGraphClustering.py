@@ -72,8 +72,10 @@ class SpectralGraphClustering:
 
     # Laplacian matrix computation
     def compute_L(self):
-
         D_powered = self.D.copy()
+        
+        #TODO this is the point that is done differently by danimontesi
+        # They elevate to the power of -1/2 only the elements on the diagonal of the D matrix
         la.fractional_matrix_power(D_powered, -1/2)
 
         step_1 = D_powered.dot(self.affinity_matrix)

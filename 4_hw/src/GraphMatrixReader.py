@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import scipy.sparse as sps
+import networkx as nx
 
 
 class GraphMatrixReader:
@@ -8,7 +9,28 @@ class GraphMatrixReader:
     def __init__(self):
         self.graph_matrix = None # np ndarray version of the matrix
         self.number_of_nodes = 0
+        self.nx_graph = nx.Graph()
+        self.start_nodes = None
+        self.end_nodes = None
 
+    
+    def gen_matrix(self, row_indices, column_indices, shape):
+
+        matrix = np.zeros(shape)
+
+        for row, column in zip(row_indices, column_indices):
+            matrix[row][column] = 1
+
+        return matrix
+
+    
+    def gen_nx_graph(self):
+        self.nx_graph.add_nodes_from(range(self.number_of_nodes))
+
+        for i in range(self.start_nodes.shape[0]):
+            self.nx_graph.add_edge(self.start_nodes[i], self.end_nodes[i])
+    
+    
     # This method reads a graph in the format fo CSV file with 2 columns
     # And converts it into a scipy sparse matrix representation and returns
     # The resulting matrix is the Adjacency matrix of the given graph    
@@ -48,6 +70,12 @@ class GraphMatrixReader:
         graph_matrix = self.gen_matrix(row_indices=start_nodes, column_indices=end_nodes, shape=(self.number_of_nodes, self.number_of_nodes))
 
         self.graph_matrix = graph_matrix
+        self.start_nodes = start_nodes
+        self.end_nodes = end_nodes
+
+        # Here generate the nx graph, we have all the information!
+        self.gen_nx_graph()
+
 
         return self.graph_matrix
         
@@ -60,12 +88,3 @@ class GraphMatrixReader:
 
         pass
 
-
-    def gen_matrix(self, row_indices, column_indices, shape):
-
-        matrix = np.zeros(shape)
-
-        for row, column in zip(row_indices, column_indices):
-            matrix[row][column] = 1
-
-        return matrix
