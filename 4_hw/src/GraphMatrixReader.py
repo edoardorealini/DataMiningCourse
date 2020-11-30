@@ -13,7 +13,7 @@ class GraphMatrixReader:
         self.start_nodes = None
         self.end_nodes = None
 
-    
+    # From input data generates the adjacency matrix 
     def gen_matrix(self, row_indices, column_indices, shape):
 
         matrix = np.zeros(shape)
@@ -23,7 +23,7 @@ class GraphMatrixReader:
 
         return matrix
 
-    
+    # Genereation of network x graph for visualization
     def gen_nx_graph(self):
         self.nx_graph.add_nodes_from(range(self.number_of_nodes))
 
@@ -79,12 +79,4 @@ class GraphMatrixReader:
 
         return self.graph_matrix
         
-
-
-    def read_synthetic_graph(self, path):
-        
-        # TODO implement this method
-        # Understand the structure of the file example2.dat and implement a method similar to the existing one
-
-        pass
 
