@@ -13,7 +13,9 @@ public class Config {
   private GraphInitColorPolicy initColorPolicy;
   private NodeSelectionPolicy nodeSelectionPolicy;
   private Float alpha;
-  private Boolean saActivation;
+  private Integer saActivation;
+  private Integer restart;
+  private Integer restartRounds;
 
   public Config setAlpha(Float alpha) {
     this.alpha = alpha;
@@ -70,8 +72,18 @@ public class Config {
     return this;
   }
 
-  public Config setSaActivation(Boolean sa) {
+  public Config setSaActivation(Integer sa) {
     this.saActivation = sa;
+    return this;
+  }
+
+  public Config setRestart(Integer re) {
+    this.restart = re;
+    return this;
+  }
+
+  public Config setRestartRounds(Integer rerounds) {
+    this.restartRounds = rerounds;
     return this;
   }
 
@@ -168,11 +180,25 @@ public class Config {
     return new Config();
   }
 
-  public Boolean getSaActivation(){
+  public Integer getSaActivation(){
     if (saActivation == null) {
       throw new NullPointerException("SA activation is not defined.");
     }
     return saActivation;
+  }
+
+  public Integer getRestart() {
+    if (restart == null) {
+      throw new NullPointerException("Restart activation is not defined.");
+    }
+    return restart;
+  }
+
+  public Integer getRestartRounds() {
+    if (restartRounds == null) {
+      throw new NullPointerException("Restart numner of rounds is not defined.");
+    }
+    return restartRounds;
   }
 
 }

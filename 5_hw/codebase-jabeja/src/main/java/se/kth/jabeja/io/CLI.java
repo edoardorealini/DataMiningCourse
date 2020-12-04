@@ -35,7 +35,13 @@ public class CLI {
   private float DELTA = (float) 0.003;
 
   @Option(name = "-saActivation", usage = "Simulated annealing activation.")
-  private boolean SA = true;
+  private int SA = 1;
+
+  @Option(name = "-restart", usage = "Restart activation.")
+  private int RESTART = 0;
+
+  @Option(name = "-restartRounds", usage = "Number of rounds for restart.")
+  private int RESTARTROUNDS = 400;
 
   @Option(name = "-seed", usage = "Seed.")
   private int SEED = 0;
@@ -114,6 +120,8 @@ public class CLI {
             .setGraphInitialColorPolicy(graphInitColorSelectionPolicy)
             .setOutputDir(OUTPUT_DIR)
             .setAlpha(ALPHA)
-            .setSaActivation(SA);
+            .setSaActivation(SA)
+            .setRestart(RESTART)
+            .setRestartRounds(RESTARTROUNDS);
   }
 }

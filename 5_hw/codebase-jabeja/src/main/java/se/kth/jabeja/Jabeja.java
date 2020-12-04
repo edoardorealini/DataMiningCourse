@@ -21,6 +21,8 @@ public class Jabeja {
   private int round;
   private float T;
   private boolean resultFileCreated = false;
+  private int restart;
+  private int restartRounds;
 
   //-------------------------------------------------------------------
   public Jabeja(HashMap<Integer, Node> graph, Config config) {
@@ -30,14 +32,20 @@ public class Jabeja {
     this.numberOfSwaps = 0;
     this.config = config;
     this.T = config.getTemperature();
+    this.restart = config.getRestart();
+    this.restartRounds = config.getRestartRounds();
   }
-
 
   //-------------------------------------------------------------------
   public void startJabeja() throws IOException {
     for (round = 0; round < config.getRounds(); round++) {
       for (int id : entireGraph.keySet()) {
         sampleAndSwap(id);
+      }
+
+      // Ja-be-Ja SA restart -> task 2.2
+      if (restart == 1 && (round % restartRounds == 0)) {
+        this.T = config.getTemperature();
       }
 
       //one cycle for all nodes have completed.
@@ -56,8 +64,8 @@ public class Jabeja {
     float delta = config.getDelta();
 
     // SA cooling function for the 2.1 task
-    if (config.getSaActivation()) {
-      // forcing T to start from 1, it is mandatory with SA
+    if (config.getSaActivation() == 1) {
+      // forcing T to start from 1, it is mandatory with SA (there is also a command line argument)
       this.T = 1;
       // the correct version from the articles say to set between 0.8 and 0.99
       //delta = 0.99f;
@@ -138,7 +146,7 @@ public class Jabeja {
         double newBenefit = pow(dpq, alpha) + pow(dqp, alpha);
 
         // different SA mechanism task 2.1 -> acceptance probability
-        if (config.getSaActivation()) {
+        if (config.getSaActivation() == 1) {
           double ap = exp((newBenefit - oldBenefit) / this.T);
           if (ap > Math.random() && newBenefit > highestBenefit) {
             bestPartner = nodeq;
@@ -292,6 +300,8 @@ public class Jabeja {
             "URSS" + "_" + config.getUniformRandomSampleSize() + "_" +
             "A" + "_" + config.getAlpha() + "_" +
             "SA" + "_" + config.getSaActivation() + "_" +
+            "RE" + "_" + config.getRestart() + "_" +
+            "RE_R" + "_" + config.getRestartRounds() + "_" +
             "R" + "_" + config.getRounds() + ".txt";
 
     if (!resultFileCreated) {
