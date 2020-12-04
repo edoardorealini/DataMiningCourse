@@ -13,6 +13,7 @@ public class Config {
   private GraphInitColorPolicy initColorPolicy;
   private NodeSelectionPolicy nodeSelectionPolicy;
   private Float alpha;
+  private Boolean saActivation;
 
   public Config setAlpha(Float alpha) {
     this.alpha = alpha;
@@ -66,6 +67,11 @@ public class Config {
 
   public Config setSeed(Integer seed) {
     this.seed = seed;
+    return this;
+  }
+
+  public Config setSaActivation(Boolean sa) {
+    this.saActivation = sa;
     return this;
   }
 
@@ -160,6 +166,13 @@ public class Config {
 
   public Config createJabejaConfig() {
     return new Config();
+  }
+
+  public Boolean getSaActivation(){
+    if (saActivation == null) {
+      throw new NullPointerException("SA activation is not defined.");
+    }
+    return saActivation;
   }
 
 }

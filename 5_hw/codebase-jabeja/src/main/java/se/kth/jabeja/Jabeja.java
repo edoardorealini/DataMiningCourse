@@ -1,6 +1,7 @@
 package se.kth.jabeja;
 
 import static java.lang.Math.pow;
+import static java.lang.Math.exp;
 import org.apache.log4j.Logger;
 import se.kth.jabeja.config.Config;
 import se.kth.jabeja.config.NodeSelectionPolicy;
@@ -47,14 +48,34 @@ public class Jabeja {
   }
 
   /**
-   * Simulated analealing cooling function
+   * Simulated annealing cooling function
    */
   private void saCoolDown(){
-    // TODO for second task
-    if (T > 1)
-      T -= config.getDelta();
-    if (T < 1)
-      T = 1;
+
+    float T_min = 0.00001f;
+    float delta = config.getDelta();
+
+    // SA cooling function for the 2.1 task
+    if (config.getSaActivation()) {
+      // forcing T to start from 1, it is mandatory with SA
+      this.T = 1;
+      // the correct version from the articles say to set between 0.8 and 0.99
+      //delta = 0.99f;
+
+      if (T > T_min) {
+        T *= delta;
+      }
+      if (T < T_min) {
+        T = T_min;
+      }
+    }
+    // linear SA cooling (default function)
+    else {
+      if (T > 1)
+        T -= delta;
+      if (T < 1)
+        T = 1;
+    }
   }
 
   /**
@@ -93,6 +114,7 @@ public class Jabeja {
     }
   }
 
+
   public Node findPartner(int nodeId, Integer[] nodes){
 
     Node nodep = entireGraph.get(nodeId);
@@ -115,9 +137,20 @@ public class Jabeja {
         int dqp = getDegree(nodeq, pColorId);
         double newBenefit = pow(dpq, alpha) + pow(dqp, alpha);
 
-        if (newBenefit * this.T > oldBenefit && newBenefit > highestBenefit) {
-          bestPartner = nodeq;
-          highestBenefit = newBenefit;
+        // different SA mechanism task 2.1 -> acceptance probability
+        if (config.getSaActivation()) {
+          double ap = exp((newBenefit - oldBenefit) / this.T);
+          if (ap > Math.random() && newBenefit > highestBenefit) {
+            bestPartner = nodeq;
+            highestBenefit = newBenefit;
+          }
+        }
+        // standard Ja-Be-Ja case with linear decreasing
+        else {
+          if (newBenefit * this.T > oldBenefit && newBenefit > highestBenefit) {
+            bestPartner = nodeq;
+            highestBenefit = newBenefit;
+          }
         }
     }
     return bestPartner;
@@ -258,6 +291,7 @@ public class Jabeja {
             "RNSS" + "_" + config.getRandomNeighborSampleSize() + "_" +
             "URSS" + "_" + config.getUniformRandomSampleSize() + "_" +
             "A" + "_" + config.getAlpha() + "_" +
+            "SA" + "_" + config.getSaActivation() + "_" +
             "R" + "_" + config.getRounds() + ".txt";
 
     if (!resultFileCreated) {

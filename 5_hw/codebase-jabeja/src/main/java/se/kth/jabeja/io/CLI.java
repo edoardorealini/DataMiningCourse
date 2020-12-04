@@ -34,10 +34,13 @@ public class CLI {
   @Option(name = "-delta", usage = "Simulated annealing delta.")
   private float DELTA = (float) 0.003;
 
+  @Option(name = "-saActivation", usage = "Simulated annealing activation.")
+  private boolean SA = true;
+
   @Option(name = "-seed", usage = "Seed.")
   private int SEED = 0;
 
-  @Option(name = "-alpha", usage = "Alpah parameter")
+  @Option(name = "-alpha", usage = "Alpha parameter")
   private float ALPHA = 2;
 
   @Option(name = "-randNeighborsSampleSize", usage = "Number of random neighbors sample size.")
@@ -110,6 +113,7 @@ public class CLI {
             .setNodeSelectionPolicy(nodeSelectionPolicy)
             .setGraphInitialColorPolicy(graphInitColorSelectionPolicy)
             .setOutputDir(OUTPUT_DIR)
-            .setAlpha(ALPHA);
+            .setAlpha(ALPHA)
+            .setSaActivation(SA);
   }
 }
