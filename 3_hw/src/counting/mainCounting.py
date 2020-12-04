@@ -35,7 +35,7 @@ if __name__ == '__main__':
 	start = time.time()
 	print("FlajoletMartin cardinality approx: ", fm.estimate_cardinality(list(multiset)))
 	end = time.time()
-	print("Time elapsed: ", round(end-start,3))
+	print("Time elapsed (seconds): ", round(end-start,3))
 
 	n_buckets = 32
 	hyperloglog = HyperLogLog(n_buckets)
@@ -43,4 +43,4 @@ if __name__ == '__main__':
 	start = time.time()
 	print("HyperLogLog cardinality approx: ", hyperloglog.estimate_cardinality(list(multiset)))
 	end = time.time()
-	print("Time elapsed: ", round(end-start,3))
+	print("Time elapsed (seconds): ", round(end-start,3))

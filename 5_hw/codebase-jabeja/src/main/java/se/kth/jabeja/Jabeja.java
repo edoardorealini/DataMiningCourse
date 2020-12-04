@@ -1,5 +1,6 @@
 package se.kth.jabeja;
 
+import static java.lang.Math.pow;
 import org.apache.log4j.Logger;
 import se.kth.jabeja.config.Config;
 import se.kth.jabeja.config.NodeSelectionPolicy;
@@ -66,29 +67,59 @@ public class Jabeja {
 
     if (config.getNodeSelectionPolicy() == NodeSelectionPolicy.HYBRID
             || config.getNodeSelectionPolicy() == NodeSelectionPolicy.LOCAL) {
-      // swap with random neighbors
-      // TODO
+
+    // swap with random neighbors
+        Integer[] randomNeighbors = getNeighbors(nodep);
+    	partner = findPartner(nodeId, randomNeighbors);
     }
 
     if (config.getNodeSelectionPolicy() == NodeSelectionPolicy.HYBRID
             || config.getNodeSelectionPolicy() == NodeSelectionPolicy.RANDOM) {
-      // if local policy fails then randomly sample the entire graph
-      // TODO
-    }
 
+      // if local policy fails then randomly sample the entire graph
+        // check that the previous if did not modified the partner reference
+    	if (partner == null) {
+    	    Integer[] sampleNeighbors = getSample(nodeId);
+    		partner = findPartner(nodeId, sampleNeighbors);
+    	}
+    }
     // swap the colors
-    // TODO
+    if (partner != null) {
+    	int pColorId = nodep.getColor();
+    	int partnerColorId = partner.getColor();
+    	nodep.setColor(partnerColorId);
+    	partner.setColor(pColorId);
+    	this.numberOfSwaps++;
+    }
   }
 
   public Node findPartner(int nodeId, Integer[] nodes){
 
     Node nodep = entireGraph.get(nodeId);
+    float alpha = config.getAlpha();
 
     Node bestPartner = null;
     double highestBenefit = 0;
 
-    // TODO
+    for(Integer node : nodes) {
+    	Node nodeq = entireGraph.get(node);
 
+    	int pColorId = nodep.getColor();
+    	int qColorId = nodeq.getColor();
+
+        int dpp = getDegree(nodep, pColorId);
+        int dqq = getDegree(nodeq, qColorId);
+        double oldBenefit = pow(dpp, alpha) + pow(dqq, alpha);
+
+        int dpq = getDegree(nodep, qColorId);
+        int dqp = getDegree(nodeq, pColorId);
+        double newBenefit = pow(dpq, alpha) + pow(dqp, alpha);
+
+        if (newBenefit * this.T > oldBenefit && newBenefit > highestBenefit) {
+          bestPartner = nodeq;
+          highestBenefit = newBenefit;
+        }
+    }
     return bestPartner;
   }
 
