@@ -1,0 +1,84 @@
+TASK 1 (linear SA, no restart)
+
+3elt graph
+T=2, alpha=2, delta=0.003
+Jabeja:278 - round: 999, edge cut:2604, swaps: 1580209, migrations: 3328
+
+T=1, alpha=2, delta=0.003
+Jabeja:278 - round: 999, edge cut:1673, swaps: 31363, migrations: 3287
+
+Add20 graph
+T=2, alpha=2, delta=0.003
+Jabeja:278 - round: 999, edge cut:2095, swaps: 1090263, migrations: 1751
+
+T=1, alpha=2, delta=0.003
+Jabeja:278 - round: 999, edge cut:1853, swaps: 582899, migrations: 1697
+
+Facebook
+T=2, alpha=2, delta=0.003
+Jabeja:278 - round: 999, edge cut:134246, swaps: 21200364, migrations: 47763
+
+T=1, alpha=2, delta=0.003
+MISSING
+
+twitter
+T=2, alpha=2, delta=0.003
+Jabeja:278 - round: 999, edge cut:41156, swaps: 899515, migrations: 2049
+
+T=1, alpha=2, delta=0.003
+Jabeja:278 - round: 999, edge cut:41675, swaps: 6087, migrations: 2032
+
+TASK 2.1 (exp SA, no restart)
+
+3elt graph 
+T=1, alpha=2, delta=0.003
+Jabeja:278 - round: 999, edge cut:2504, swaps: 4714786, migrations: 3268
+
+T=1, alpha=2, delta=0.9
+Jabeja:278 - round: 999, edge cut:2477, swaps: 4714818, migrations: 3334
+
+--> aumentando il numero di round edge-cut diminuisce ancora
+
+Add20
+T=1, alpha=2, delta=0.003
+Jabeja:278 - round: 999, edge cut:2529, swaps: 2392868, migrations: 1718
+
+T=1, alpha=2, delta=0.9
+Jabeja:278 - round: 999, edge cut:2477, swaps: 2392957, migrations: 1697
+
+Facebook
+T=1, alpha=2, delta=0.003
+MISSING
+
+twitter
+T=1, alpha=2, delta=0.003
+Jabeja:278 - round: 999, edge cut:41185, swaps: 2639011, migrations: 2038
+
+T=1, alpha=2, delta=0.9
+Jabeja:278 - round: 999, edge cut:41183, swaps: 2639727, migrations: 2030
+
+TASK 2.2 (linear SA, yes restart)
+
+3elt graph
+T=2, alpha=2, delta=0.003, restart=yes, restartrounds=400
+Jabeja:278 - round: 999, edge cut:2420, swaps: 4092330, migrations: 3392
+
+Add20 graph
+T=2, alpha=2, delta=0.003, restart=yes, restartrounds=400
+Jabeja:278 - round: 999, edge cut:2271, swaps: 2150939, migrations: 1755
+
+Twitter graph
+T=2, alpha=2, delta=0.003, restart=yes, restartrounds=400
+Jabeja:278 - round: 999, edge cut:42099, swaps: 2316038, migrations: 2025
+
+
+Facebook graph
+T=2, alpha=2, delta=0.003, restart=yes, restartrounds=400
+MISSING
+
+
+
+
+
+
+

@@ -68,8 +68,8 @@ public class Jabeja {
       // forcing T to start from 1, it is mandatory with SA (there is also a command line argument)
       this.T = 1;
       // the correct version from the articles say to set between 0.8 and 0.99
-      //delta = 0.99f;
-
+      delta = 0.9f;
+      // exponential SA cooling
       if (T > T_min) {
         T *= delta;
       }

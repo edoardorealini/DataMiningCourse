@@ -35,7 +35,7 @@ public class CLI {
   private float DELTA = (float) 0.003;
 
   @Option(name = "-saActivation", usage = "Simulated annealing activation.")
-  private int SA = 1;
+  private int SA = 0;
 
   @Option(name = "-restart", usage = "Restart activation.")
   private int RESTART = 0;
