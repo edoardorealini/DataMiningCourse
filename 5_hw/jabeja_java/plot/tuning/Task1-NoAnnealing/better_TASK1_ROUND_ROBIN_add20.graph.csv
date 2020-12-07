@@ -1,0 +1,2 @@
+,round,edgeCut,swaps,migrations,GraphInfo,OutFile,delta
+0,999,2095,1090263,1751,"[""b'2020-12-07 19:39:25 INFO  GraphReader:54 - ./graphs/add20.graph. Nodes: 2395, Edges: 7462"", '2020-12-07 19:39:25 INFO  GraphReader:145 - Color Distribution : [ Color: 0, Count: 598 ] [ Color: 1, Count: 599 ] [ Color: 2, Count: 599 ] [ Color: 3, Count: 599 ] ']",./output/add20.graph_NS_HYBRID_GICP_ROUND_ROBIN_T_2.0_D_0.003_RNSS_3_URSS_6_A_2.0_SA_0_RE_0_RE_R_400_R_1000.txt,0.003

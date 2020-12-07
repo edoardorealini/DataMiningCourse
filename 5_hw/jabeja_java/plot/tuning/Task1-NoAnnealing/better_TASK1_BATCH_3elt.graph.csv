@@ -1,0 +1,2 @@
+,round,edgeCut,swaps,migrations,GraphInfo,OutFile,delta
+0,999,381,1578675,121,"[""b'2020-12-07 19:42:19 INFO  GraphReader:54 - ./graphs/3elt.graph. Nodes: 4720, Edges: 13722"", '2020-12-07 19:42:19 INFO  GraphReader:145 - Color Distribution : [ Color: 0, Count: 1180 ] [ Color: 1, Count: 1180 ] [ Color: 2, Count: 1180 ] [ Color: 3, Count: 1180 ] ']",./output/3elt.graph_NS_HYBRID_GICP_BATCH_T_2.0_D_0.003_RNSS_3_URSS_6_A_2.0_SA_0_RE_0_RE_R_400_R_1000.txt,0.003
