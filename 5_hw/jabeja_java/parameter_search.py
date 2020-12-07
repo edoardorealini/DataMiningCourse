@@ -119,7 +119,7 @@ if __name__ == '__main__':
                 result["delta"] = delta
                 results.append(result) 
 
-                print(result)      
+                print(result)
                 
             df = pd.DataFrame(results)
             graph_name = graph.replace("./graphs/", "")
