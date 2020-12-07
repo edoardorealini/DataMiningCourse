@@ -16,6 +16,7 @@ public class Config {
   private Integer saActivation;
   private Integer restart;
   private Integer restartRounds;
+  private Integer customProbability;
 
   public Config setAlpha(Float alpha) {
     this.alpha = alpha;
@@ -84,6 +85,11 @@ public class Config {
 
   public Config setRestartRounds(Integer rerounds) {
     this.restartRounds = rerounds;
+    return this;
+  }
+
+  public Config setCustomProbability(Integer custom) {
+    this.customProbability = custom;
     return this;
   }
 
@@ -199,6 +205,13 @@ public class Config {
       throw new NullPointerException("Restart numner of rounds is not defined.");
     }
     return restartRounds;
+  }
+
+  public Integer getCustomProbability() {
+    if (customProbability == null) {
+      throw new NullPointerException("Custom probability is not defined.");
+    }
+    return customProbability;
   }
 
 }

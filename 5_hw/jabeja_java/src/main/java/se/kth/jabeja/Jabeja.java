@@ -66,9 +66,9 @@ public class Jabeja {
     // SA cooling function for the 2.1 task
     if (config.getSaActivation() == 1) {
       // forcing T to start from 1, it is mandatory with SA (there is also a command line argument)
-      this.T = 1;
+      //this.T = 1;
       // the correct version from the articles say to set between 0.8 and 0.99
-      delta = 0.9f;
+      //delta = 0.9f;
       // exponential SA cooling
       if (T > T_min) {
         T *= delta;
@@ -145,9 +145,16 @@ public class Jabeja {
         int dqp = getDegree(nodeq, pColorId);
         double newBenefit = pow(dpq, alpha) + pow(dqp, alpha);
 
+        double ap = 0;
+
         // different SA mechanism task 2.1 -> acceptance probability
         if (config.getSaActivation() == 1) {
-          double ap = exp((newBenefit - oldBenefit) / this.T);
+          if (config.getCustomProbability() == 1) {
+            ap = exp((newBenefit - oldBenefit - 1) / this.T);
+          }
+          else {
+            ap = exp((newBenefit - oldBenefit) / this.T);
+          }
           if (ap > Math.random() && newBenefit > highestBenefit) {
             bestPartner = nodeq;
             highestBenefit = newBenefit;
