@@ -78,6 +78,11 @@ MISSING
 
 
 
+PARAMETER TUNING RESULTS:
+3elt graph:
+{'alpha': 2.0, 'delta': 0.01, 'graph': './graphs/3elt.graph', 'graphInitColorSelectionPolicy': 'BATCH', 'nodeSelectionPolicy': 'HYBRID', 'numPartitions': 4, 'outputDir': './output', 'randNeighborsSampleSize': 3, 'restart': 0, 'restartRounds': 400, 'rounds': 1000, 'saActivation': 0, 'seed': 0, 'temp': 1, 'uniformRandSampleSize': 6}
+{'round': '999', 'edgeCut': '378', 'swaps': '3639', 'migrations': '119'}
+
 
 
 

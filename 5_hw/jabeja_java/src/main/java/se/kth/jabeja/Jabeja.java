@@ -52,7 +52,30 @@ public class Jabeja {
       //reduce the temperature
       saCoolDown();
       report();
+
+      
     }
+
+    Config config = this.config;
+      File inputFile = new File(config.getGraphFilePath());
+
+      String outputFilePath = config.getOutputDir() +
+            File.separator +
+            inputFile.getName() + "_" +
+            "NS" + "_" + config.getNodeSelectionPolicy() + "_" +
+            "GICP" + "_" + config.getGraphInitialColorPolicy() + "_" +
+            "T" + "_" + config.getTemperature() + "_" +
+            "D" + "_" + config.getDelta() + "_" +
+            "RNSS" + "_" + config.getRandomNeighborSampleSize() + "_" +
+            "URSS" + "_" + config.getUniformRandomSampleSize() + "_" +
+            "A" + "_" + config.getAlpha() + "_" +
+            "SA" + "_" + config.getSaActivation() + "_" +
+            "RE" + "_" + config.getRestart() + "_" +
+            "RE_R" + "_" + config.getRestartRounds() + "_" +
+            "R" + "_" + config.getRounds() + ".txt";
+
+      System.out.println("outputFilePath " + outputFilePath);
+
   }
 
   /**
@@ -66,9 +89,9 @@ public class Jabeja {
     // SA cooling function for the 2.1 task
     if (config.getSaActivation() == 1) {
       // forcing T to start from 1, it is mandatory with SA (there is also a command line argument)
-      this.T = 1;
+      //this.T = 1;
       // the correct version from the articles say to set between 0.8 and 0.99
-      delta = 0.9f;
+      //delta = 0.9f;
       // exponential SA cooling
       if (T > T_min) {
         T *= delta;
