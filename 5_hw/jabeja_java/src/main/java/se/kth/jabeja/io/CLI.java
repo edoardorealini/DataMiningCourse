@@ -34,6 +34,9 @@ public class CLI {
   @Option(name = "-delta", usage = "Simulated annealing delta.")
   private float DELTA = (float) 0.003;
 
+  @Option(name = "-custom", usage = "Custom acceptance probability function.")
+  private int CUSTOM =  0;
+
   @Option(name = "-saActivation", usage = "Simulated annealing activation.")
   private int SA = 0;
 
@@ -122,6 +125,7 @@ public class CLI {
             .setAlpha(ALPHA)
             .setSaActivation(SA)
             .setRestart(RESTART)
-            .setRestartRounds(RESTARTROUNDS);
+            .setRestartRounds(RESTARTROUNDS)
+            .setCustomProbability(CUSTOM);
   }
 }

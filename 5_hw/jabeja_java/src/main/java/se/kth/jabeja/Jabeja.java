@@ -168,9 +168,16 @@ public class Jabeja {
         int dqp = getDegree(nodeq, pColorId);
         double newBenefit = pow(dpq, alpha) + pow(dqp, alpha);
 
+        double ap = 0;
+
         // different SA mechanism task 2.1 -> acceptance probability
         if (config.getSaActivation() == 1) {
-          double ap = exp((newBenefit - oldBenefit) / this.T);
+          if (config.getCustomProbability() == 1) {
+            ap = exp((newBenefit - oldBenefit - 1) / this.T);
+          }
+          else {
+            ap = exp((newBenefit - oldBenefit) / this.T);
+          }
           if (ap > Math.random() && newBenefit > highestBenefit) {
             bestPartner = nodeq;
             highestBenefit = newBenefit;
